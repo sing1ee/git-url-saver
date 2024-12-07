@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client';
 import { BookmarkPlus, Settings } from 'lucide-react';
 import { saveBookmark } from '../utils/github';
 import { getCurrentTab } from '../utils/chrome';
+import '../index.css';
 
 function Popup() {
   const [title, setTitle] = useState('');
