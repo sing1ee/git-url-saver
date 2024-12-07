@@ -10,6 +10,21 @@ interface GitHubConfig {
   repository: string;
 }
 
+// Helper function to handle Unicode characters
+function utf8ToBase64(str: string): string {
+  return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g,
+    function toSolidBytes(_match, p1) {
+      return String.fromCharCode(parseInt(p1, 16));
+    }));
+}
+
+// Helper function to decode Base64 to UTF-8
+function base64ToUtf8(str: string): string {
+  return decodeURIComponent(atob(str).split('').map(function(c) {
+    return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+  }).join(''));
+}
+
 async function getGitHubConfig(): Promise<GitHubConfig> {
   const result = await chrome.storage.sync.get(['githubConfig']);
   if (!result.githubConfig) {
@@ -68,7 +83,7 @@ async function getFile(config: GitHubConfig, path: string): Promise<string | nul
     }
 
     const data = await response.json();
-    return atob(data.content);
+    return base64ToUtf8(data.content);
   } catch (error) {
     return null;
   }
@@ -101,7 +116,7 @@ async function updateFile(
       },
       body: JSON.stringify({
         message: action === 'create' ? 'Create bookmark file' : 'Update bookmarks',
-        content: btoa(content),
+        content: utf8ToBase64(content),
         sha,
       }),
     }
