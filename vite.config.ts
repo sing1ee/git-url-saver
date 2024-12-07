@@ -15,6 +15,11 @@ export default defineConfig({
         options: 'src/options/options.html',
         background: 'src/background.ts',
       },
+      output: {
+        entryFileNames: '[name].js',
+      }
     },
+    outDir: 'dist',
+    emptyOutDir: true,
   },
 })

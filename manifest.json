@@ -6,16 +6,16 @@
   "permissions": ["activeTab", "storage", "tabs"],
   "host_permissions": ["https://api.github.com/*"],
   "action": {
-    "default_popup": "popup.html",
+    "default_popup": "src/popup/popup.html",
     "default_icon": {
       "16": "assets/icon16.png",
       "48": "assets/icon48.png",
       "128": "assets/icon128.png"
     }
   },
-  "options_page": "options.html",
+  "options_page": "src/options/options.html",
   "background": {
-    "service_worker": "background.js",
+    "service_worker": "src/background.ts",
     "type": "module"
   },
   "icons": {
