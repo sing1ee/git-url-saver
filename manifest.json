@@ -3,7 +3,7 @@
   "name": "URL Bookmark Manager",
   "version": "1.0.0",
   "description": "A GitHub-based URL bookmark manager with notes",
-  "permissions": ["activeTab", "storage", "tabs"],
+  "permissions": ["activeTab", "storage", "tabs", "contextMenus", "scripting"],
   "host_permissions": ["https://api.github.com/*"],
   "action": {
     "default_popup": "src/popup/popup.html",

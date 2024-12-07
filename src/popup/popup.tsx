@@ -19,6 +19,15 @@ function Popup() {
         setTitle(tab.title);
         setUrl(tab.url);
       }
+
+      // Get selected text if available
+      chrome.storage.local.get(['selectedText'], (result) => {
+        if (result.selectedText) {
+          setNote(result.selectedText);
+          // Clear the storage after using it
+          chrome.storage.local.remove('selectedText');
+        }
+      });
     };
     loadCurrentPage();
   }, []);
