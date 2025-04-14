@@ -19,10 +19,3 @@ chrome.contextMenus.onClicked.addListener(async (info, tab) => {
     chrome.action.openPopup();
   }
 });
-
-// Handle messages from content script
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  if (message.action === 'openPopup') {
-    chrome.action.openPopup();
-  }
-});

@@ -8,7 +8,7 @@
     "build": "vite build",
     "watch": "vite build --watch",
     "preview": "vite preview",
-    "package": "./scripts/build.sh"
+    "package": "vite build && ./scripts/build.sh"
   },
   "dependencies": {
     "lucide-react": "^0.344.0",
